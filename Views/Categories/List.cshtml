@@ -1,0 +1,55 @@
+﻿@using AdvantShop.ViewModels
+@model CategoriesListViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="category-body">
+    <span class="category-name">@Model.CategoryName</span>
+    @{
+        int count = 0;
+        string positionClass = "first-product";
+        foreach (var product in Model.Products)
+        {
+            string availiable = "В наличии";
+            string availiableClass = "";
+            if (!product.Availiable) { availiable = "Нет в наличии"; availiableClass = "not-availiable"; }
+            <div class="g41-product category-body-item @positionClass ">
+                @{
+                    count++;
+                    positionClass = (count % 3 == 0) ? "first-product" : "";
+                }
+                <div class="g41-img-block">
+                    <img src=@product.Img class="g41-img">
+                    <div class="img-buttons">
+                        <a href="" class="img-button img-first"></a>
+                        <a href="" class="img-button"></a>
+                        <a href="" class="img-button"></a>
+                        <a href="" class="img-button"></a>
+                        <a href="" class="img-button"></a>
+                    </div>
+                </div>
+                <div class="stars"></div>
+                <a href="" class="g40-center-text">@product.Desc</a>
+                <div class="stars">
+                    @{ for (int i = 1; i < 6; i++)
+                        {
+                            if (i > product.Stars)
+                            { <img src="/img/svg/empty-star.svg"> }
+                            else
+                            { <img src="/img/svg/gold-star.svg"> }
+                        }
+                    }
+                </div>
+                <span class="g40-info-tight-text-availability @availiableClass ">@availiable</span>
+                <span class="g40-price">@String.Format("{0:0,0}", product.Price) руб.</span>
+                <div class="g40-basket">
+                    <img src="/img/svg/g40-basket.svg">
+                    <a href="" class="g40-basket-text">В корзину</a>
+                </div>
+            </div>
+        }
+    }
+</div>

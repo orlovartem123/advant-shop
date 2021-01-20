@@ -1,0 +1,301 @@
+.right-group-account {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.right-group-image{
+    margin-right: 10px;
+}
+
+.basket-content {
+    position: relative;
+    margin-top: 0;
+    width: 1130px;
+    height: 696px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.header-basket {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 36px;
+    line-height: 130%;
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+.header-basket-info {
+    position: absolute;
+    width: 100%;
+    height: 42px;
+    border-bottom: 1px solid #EFEFF4;
+    top: 75px;
+}
+
+.header-basket-info-text {
+    position: absolute;
+    width: 1056px;
+    height: 23px;
+    left: 20px;
+    top: 0;
+}
+
+.product-basket-header, .basket-text-count, .basket-info-text-price-ed, .basket-info-text-price {
+    position: absolute;
+    font-size: 18px;
+    line-height: 150%;
+    display: flex;
+    align-items: center;
+    color: #8A8A8F;
+}
+
+.product-basket-header {
+    left: 0;
+    top: 0;
+}
+
+.basket-text-count {
+    right: 360px;
+    top: 0;
+}
+
+.basket-info-text-price {
+    right: 0;
+    top: 0;
+}
+
+.basket-info-text-price-ed {
+    top: 0;
+    right: 180px;
+}
+
+.delete-trash {
+    position: absolute;
+    width: 16px;
+    height: 13px;
+    top: 9px;
+    right: 20px;
+}
+
+.frame111 {
+    position: absolute;
+    top: 117px;
+    width: 100%;
+    height: 83px;
+}
+
+.product-basket-imac {
+    position: absolute;
+    width: 59px;
+    height: 49px;
+    top: 33px;
+    left: 21px;
+}
+
+.product-basket-text {
+    position: absolute;
+    width: 461px;
+    height: 45px;
+    font-size: 18px;
+    line-height: 150%;
+    display: flex;
+    align-items: center;
+    color: #2D9CEE;
+    top: 36px;
+    left: 104px;
+}
+
+.product-spinner {
+    position: absolute;
+    top: 35px;
+    left: 586px;
+}
+
+.product-price, .product-price-total {
+    position: absolute;
+    font-size: 18px;
+    line-height: 150%;
+    display: flex;
+    align-items: center;
+    text-align: right;
+    color: #000000;
+}
+
+.price-product {
+    top: 44px;
+    right: 241px;
+}
+
+.total-product {
+    right: 62px;
+    top: 44px;
+}
+
+.button-delete-product {
+    position: absolute;
+    width: 11px;
+    height: 14px;
+}
+
+.icon-delete {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.delete-product {
+    top: 52px;
+    right: 24px;
+}
+
+
+.frame112 {
+    position: absolute;
+    top: 200px;
+    width: 100%;
+    height: 83px;
+}
+
+.product-basket-iphone {
+    position: absolute;
+    width: 34px;
+    height: 49px;
+    bottom: 17px;
+    left: 33px;
+}
+
+.total-frame-basket {
+    position: absolute;
+    width: 100%;
+    height: 122px;
+    top: 266px;
+    background: #FFFFFF;
+}
+
+.total-info-basket {
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    height: 72px;
+    background: #F9F9F9;
+}
+
+.info-right-text {
+    position: absolute;
+    left: 23px;
+    top: 24px;
+    font-size: 18px;
+    line-height: 150%;
+    display: flex;
+    align-items: center;
+    color: #8A8A8F;
+}
+
+.total-basket-value {
+    position: absolute;
+    top: 20px;
+    right: 63px;
+    font-size: 24px;
+    line-height: 130%;
+    display: flex;
+    align-items: center;
+    text-align: right;
+    color: #000000;
+}
+
+.basket-add-product {
+    position: absolute;
+    top: 388px;
+    width: 100%;
+    height: 316px;
+}
+
+.text-to-input {
+    position: absolute;
+    font-size: 14px;
+    line-height: 16px;
+    color: #000000;
+    left: 0;
+}
+
+.first-input {
+    top: 73px;
+}
+
+.second-input {
+    top: 140px;
+}
+
+.third-input {
+    top: 207px;
+}
+
+.input-basket-info {
+    position: absolute;
+    width: 318px;
+    height: 54px;
+    background: #F9F9F9;
+    border: 1px solid #EFEFF4;
+    box-sizing: border-box;
+    border-radius: 4px;
+    left: 192px;
+}
+
+.first-input-basket {
+    top: 54px;
+}
+
+.second-input-basket {
+    top: 121px;
+}
+
+.third-input-basket {
+    top: 188px;
+}
+
+.add-product-basket {
+    position: absolute;
+    left: 192px;
+    bottom: 0;
+    width: 200px;
+    height: 48px;
+    font-size: 14px;
+    background: #2D9CEE;
+    border: none;
+    border-radius: 4px;
+    color: #FFFFFF;
+}
+
+.other-basket-content{
+    position: absolute;
+    width: 100%;
+    height: 704px;
+    top: 40px;
+    z-index: 5;
+}
+
+.drop-list-wrapper-basket {
+    position: absolute;
+    top: 0;
+    width: 107px;
+    height: 49px;
+}
+
+.drop-list-basket {
+    display: none;
+    position: absolute;
+    width: 205px;
+    height: 336px;
+    top: 0;
+    left: 291px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    z-index: 50;
+}

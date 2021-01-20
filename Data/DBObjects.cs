@@ -1,0 +1,206 @@
+﻿using AdvantShop.Data.Models;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace AdvantShop.Data
+{
+    public class DBObjects
+    {
+
+        private static Dictionary<string, Category> category;
+
+        public static void Initial(AppDBContent content)
+        {
+            if (!content.Categories.Any())
+            {
+                //content.Categories.AddRange(Categories.Select(c => c.Value));
+            }
+
+            if (!content.Products.Any())
+            {
+                content.AddRange(
+                    new Product
+                    {
+                        Img = "/img/forBd/sport/velik.png",
+                        Desc = "Коричневый велосипед",
+                        Stars = 3,
+                        Availiable = false,
+                        Hit = false,
+                        Novelty = false,
+                        Price = 16000,
+                        Category = Categories["Спортивные товары"]
+                    },
+                    new Product
+                    {
+                        Img = "/img/forBd/garden/velik-red.png",
+                        Desc = "Бело-красный велосипед",
+                        Stars = 5,
+                        Availiable = true,
+                        Hit = false,
+                        Novelty = true,
+                        Price = 24000,
+                        Category = Categories["Спортивные товары"]
+                    },
+                    new Product
+                    {
+                        Img = "/img/forBd/garden/myach.png",
+                        Desc = "Футбольный мяч Adidas",
+                        Stars = 5,
+                        Availiable = false,
+                        Hit = true,
+                        Novelty = false,
+                        Price = 900,
+                        Category = Categories["Спортивные товары"]
+                    },
+                    new Product
+                    {
+                        Img = "/img/forBd/cosmetic/radio.png",
+                        Desc = "Радиоприемник Рассвет",
+                        Stars = 2,
+                        Availiable = true,
+                        Hit = false,
+                        Novelty = true,
+                        Price = 450,
+                        Category = Categories["Бытовая техника"]
+                    },
+                    new Product
+                    {
+                        Img = "/img/forBd/tech/micro.png",
+                        Desc = "Микроволновка Hayer",
+                        Stars = 4,
+                        Availiable = false,
+                        Hit = false,
+                        Novelty = false,
+                        Price = 6900,
+                        Category = Categories["Бытовая техника"]
+                    },
+                     new Product
+                     {
+                         Img = "/img/forBd/furn/mirror.png",
+                         Desc = "Зеркало раритетное",
+                         Stars = 3,
+                         Availiable = false,
+                         Hit = false,
+                         Novelty = false,
+                         Price = 89000,
+                         Category = Categories["Мебель"]
+                     },
+                     new Product
+                     {
+                         Img = "/img/forBd/furn/bed.png",
+                         Desc = "Кровать двуспальная best-slip",
+                         Stars = 5,
+                         Availiable = true,
+                         Hit = false,
+                         Novelty = false,
+                         Price = 40000,
+                         Category = Categories["Мебель"]
+                     },
+                     new Product
+                     {
+                         Img = "/img/forBd/furn/kamin.png",
+                         Desc = "Камин безопасный Fire-class",
+                         Stars = 4,
+                         Availiable = true,
+                         Hit = false,
+                         Novelty = false,
+                         Price = 32000,
+                         Category = Categories["Мебель"]
+                     },
+                     new Product
+                     {
+                         Img = "/img/forBd/cloth/suit.png",
+                         Desc = "Мужской костюм черный",
+                         Stars = 5,
+                         Availiable = true,
+                         Hit = false,
+                         Novelty = false,
+                         Price = 10000,
+                         Category = Categories["Одежда"]
+                     },
+                     new Product
+                     {
+                         Img = "/img/forBd/cloth/tshirt.png",
+                         Desc = "Зеленая футболка",
+                         Stars = 2,
+                         Availiable = true,
+                         Hit = false,
+                         Novelty = false,
+                         Price = 200,
+                         Category = Categories["Одежда"]
+                     },
+                     new Product
+                     {
+                         Img = "/img/forBd/cloth/kurtka.png",
+                         Desc = "Кожанная куртка мужская",
+                         Stars = 5,
+                         Availiable = true,
+                         Hit = false,
+                         Novelty = false,
+                         Price = 6000,
+                         Category = Categories["Одежда"]
+                     }
+
+                //},
+                //new Product
+                //{
+                //    Img = "/img/svg/bluza.svg",
+                //    Desc = "Блуза Concepti Mi 9 Lite 6/128GB",
+                //    Stars = 4,
+                //    Availiable = true,
+                //    Hit = true,
+                //    Novelty = false,
+                //    Price = 23600,
+                //    Category = Categories["Одежда"]
+                //},
+                //new Product
+                //{
+                //    Img = "/img/svg/sofa.svg",
+                //    Desc = "kuks классный Textile Rustic",
+                //    Stars = 4,
+                //    Availiable = true,
+                //    Hit = true,
+                //    Novelty = false,
+                //    Price = 228,
+                //    Category = Categories["Мебель"]
+                //}
+                );
+            }
+            //content.SaveChanges();
+        }
+
+        public static Dictionary<string, Category> Categories
+        {
+            get
+            {
+                if (category == null)
+                {
+                    var list = new Category[]
+                    {
+                        new Category{ Name="Одежда", isFavourite=true},
+                        new Category{ Name="Мебель", isFavourite=true},
+                        new Category{ Name="Бытовая техника", isFavourite=true},
+                        new Category{ Name="Спортивные товары", isFavourite=true},
+                        new Category{ Name="Косметика", isFavourite=true},
+                        new Category{ Name="Садовая техника", isFavourite=true},
+                        new Category{ Name="Сантехника", isFavourite=false},
+                        new Category{ Name="Строительные материалы", isFavourite=false},
+                        new Category{ Name="Автотехника", isFavourite=false},
+                        new Category{ Name="Еда", isFavourite=false},
+                        new Category{ Name="Разработка сайтов", isFavourite=false},
+                    };
+                    category = new Dictionary<string, Category>();
+                    foreach (Category el in list)
+                    {
+                        category.Add(el.Name, el);
+                    }
+                }
+                return category;
+            }
+        }
+    }
+}

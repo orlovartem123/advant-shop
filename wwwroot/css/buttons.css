@@ -1,0 +1,88 @@
+.button-pages {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #EFEFF4;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+.button-content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.button-content-num {
+    color: #2D9CEE;
+    font-size: 14px;
+}
+
+.active {
+    color: #C8C7CC;
+}
+
+.button-show-more {
+    position: relative;
+    margin-right: 14px;
+    width: 151px;
+    height: 50px;
+    border: 1px solid #EFEFF4;
+    box-sizing: border-box;
+    border-radius: 4px;
+    background: #F9F9F9;
+}
+
+.show-more-text {
+    position: absolute;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #2D9CEE;
+    font-size: 14px;
+}
+
+.spinner {
+    width: 107px;
+    height: 48px;
+    background: #FFFFFF;
+    border: 1px solid #EFEFF4;
+    border-radius: 4px;
+}
+
+.spinner-num {
+    position: absolute;
+    right: 50px;
+    top: 10px;
+    font-size: 18px;
+    line-height: 150%;
+    display: flex;
+    align-items: center;
+    text-align: right;
+    color: #000000;
+}
+
+.spinner-up-button {
+    width: 12px;
+    height: 7px;
+    position: absolute;
+    right: 16px;
+    top: 13px;
+}
+
+.spinner-down-button {
+    width: 12px;
+    height: 7px;
+    position: absolute;
+    right: 16px;
+    bottom: 13px;
+}
+
+.spinner-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}

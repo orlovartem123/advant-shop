@@ -1,0 +1,282 @@
+﻿@using AdvantShop.ViewModels
+@model ProductsListViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = "_Layout";
+}
+<div class="slider">
+    <div class="slider-buttons">
+        <label class="label">
+            <input id="r1" type="radio" class="buttons" name="r" value="1" checked>
+            <span class="fake"></span>
+        </label>
+        <label class="label">
+            <input id="r2" type="radio" class="buttons" name="r" value="2">
+            <span class="fake"></span>
+        </label>
+        <label class="label">
+            <input id="r3" type="radio" class="buttons" name="r" value="3">
+            <span class="fake"></span>
+        </label>
+        <label class="label">
+            <input id="r4" type="radio" class="buttons" name="r" value="4">
+            <span class="fake"></span>
+        </label>
+        <label class="label">
+            <input id="r5" type="radio" class="buttons" name="r" value="5">
+            <span class="fake"></span>
+        </label>
+    </div>
+    <div class="slider-container">
+        <div class="slider-track">
+            <div class="slider-item">
+                <img src="/img/jpg/slide1.jpg" alt="" class="slider-img">
+                <div class="slider-item-info-content">
+                    <div class="slider-item-info">
+                        <div class="slider-item-info-text">Ноутбуки, планшеты и компьютеры</div>
+                        <div class="slider-item-info-dop-text">Верные помощники для удаленки!</div>
+                        <button class="slider-item-button">Посмотреть каталог</button>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-item">
+                <img src="/img/jpg/slide2.jpg" alt="" class="slider-img">
+                <div class="slider-item-info-content">
+                    <div class="slider-item-info">
+                        <div class="slider-item-info-text">Товары для вашего любимца</div>
+                        <div class="slider-item-info-dop-text">По доступным ценам</div>
+                        <button class="slider-item-button">Посмотреть каталог</button>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-item">
+                <img src="/img/jpg/slide3.jpg" alt="" class="slider-img">
+                <div class="slider-item-info-content">
+                    <div class="slider-item-info">
+                        <div class="slider-item-info-text">Модный интернет магазин</div>
+                        <div class="slider-item-info-dop-text">Одежды, обуви и аксессуаров</div>
+                        <button class="slider-item-button">Посмотреть каталог</button>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-item">
+                <img src="/img/jpg/slide4.jpg" alt="" class="slider-img">
+                <div class="slider-item-info-content">
+                    <div class="slider-item-info">
+                        <div class="slider-item-info-text">Берите выше.<br />IPhone 11</div>
+                        <div class="slider-item-info-dop-text">Дополнительная выгода 6000 рублей</div>
+                        <button class="slider-item-button">Посмотреть каталог</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="short-info">
+    <ul class="short-info-list">
+        <li class="short-info-list-first-item">
+            <a href="" class="list-content">
+                <img src="/img/svg/per.svg" alt="" class="list-content-icon-per">
+                <span class="list-content-text">Акции и скидки для<br />постоянных клиентов</span>
+            </a>
+        </li>
+        <li class="short-info-list-item">
+            <a href="" class="list-content">
+                <img src="/img/svg/Star_Icon.svg" alt="" class="list-content-icon-star">
+                <span class="list-content-text">Качественные услуги<br />и сервис</span>
+            </a>
+        </li>
+        <li class="short-info-list-item">
+            <a href="" class="list-content">
+                <img src="/img/svg/blocks.svg" alt="" class="list-content-icon-block">
+                <span class="list-content-text">Широкий ассортимент<br />товаров</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="frame41">
+    <span class="frame41-text-header">Популярные категории</span>
+    <div class="frame41-categories">
+        <div class="frame41-categories-list">
+            <a href="" class="frame41-categories-list-item">
+                <div class="frame41-categories-list-item-wrapper-1">
+                    <img src="/img/jpg/childs.jpg" alt="" class="categories-list-content-img-child">
+                    <span class="categories-list-content-text">Одежда</span>
+                </div>
+            </a>
+            <a href="" class="frame41-categories-list-item">
+                <div class="frame41-categories-list-item-wrapper-1">
+                    <img src="/img/jpg/sofa.jpg" alt="" class="categories-list-content-img-child">
+                    <span class="categories-list-content-text">Мебель</span>
+                </div>
+            </a>
+            <a href="" class="frame41-categories-list-item">
+                <div class="frame41-categories-list-item-wrapper-1">
+                    <img src="/img/jpg/plita.jpg" alt="" class="categories-list-content-img-child">
+                    <span class="categories-list-content-text">Бытовая техника</span>
+                </div>
+            </a>
+            <a href="" class="frame41-categories-list-item">
+                <div class="frame41-categories-list-item-wrapper-1">
+                    <img src="/img/jpg/watches.jpg" alt="" class="categories-list-content-img-child">
+                    <span class="categories-list-content-text-long">Спортивные товары</span>
+                </div>
+            </a>
+            <a href="" class="frame41-categories-list-item">
+                <div class="frame41-categories-list-item-wrapper-1">
+                    <img src="/img/jpg/cosmetic.jpg" alt="" class="categories-list-content-img-child">
+                    <span class="categories-list-content-text">Косметика</span>
+                </div>
+            </a>
+            <a href="" class="frame41-categories-list-item">
+                <div class="frame41-categories-list-item-wrapper-1">
+                    <img src="/img/jpg/for_garden.jpg" alt="" class="categories-list-content-img-child">
+                    <span class="categories-list-content-text">Садовая техника</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="group40">
+    <div class="g40-header">
+        <span class="g40-left-header">Новинки</span>
+        <a href="" class="g40-right-header">Посмотреть все новинки</a>
+    </div>
+    <div class="g40-product-info">
+        @{
+            string firstProductClass = "first-product";
+            foreach (var product in Model.noveltyProducts)
+            {
+                string availiable = "В наличии";
+                string availiableClass = "";
+                if (!product.Availiable) { availiable = "Нет в наличии"; availiableClass = "not-availiable"; }
+                <div class="g40-product @firstProductClass ">
+                    @{firstProductClass = "";}
+                    <div class="g41-img-block">
+                        <img src=@product.Img class="g41-img">
+                        <div class="img-buttons">
+                            <a href="" class="img-button img-first"></a>
+                            <a href="" class="img-button"></a>
+                            <a href="" class="img-button"></a>
+                            <a href="" class="img-button"></a>
+                            <a href="" class="img-button"></a>
+                        </div>
+                    </div>
+                    <a href="" class="g40-right-text">@product.Desc</a>
+                    <div class="stars">
+                        @{ for (int i = 1; i < 6; i++)
+                            {
+                                if (i > product.Stars)
+                                { <img src="/img/svg/empty-star.svg"> }
+                                else
+                                { <img src="/img/svg/gold-star.svg"> }
+                            }
+                        }
+                    </div>
+                    <span class="g40-info-tight-text-availability @availiableClass ">@availiable</span>
+                    <span class="g40-price">@String.Format("{0:0,0}", product.Price) руб.</span>
+                    <div class="g40-basket">
+                        <img src="/img/svg/g40-basket.svg">
+                        <a href="" class="g40-basket-text">В корзину</a>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <div class="product-arrows g40-arrows">
+        <button id="noveltyLeft" class="arrow-btn"><img src="/img/svg/left-arrow-sale.svg" class="arrow-img"></button>
+        <button id="noveltyRight" class="arrow-btn"> <img src="/img/svg/right-arrow-sale.svg" class="arrow-img"></button>
+    </div>
+</div>
+
+
+
+
+<div class="group41">
+    <div class="g41-header">
+        <span class="g41-left-header">Хиты продаж</span>
+        <a href="" class="g41-right-header">Посмотреть все хиты продаж</a>
+    </div>
+    <div class="g41-product-info">
+        @{
+            firstProductClass = "first-product";
+            foreach (var product in Model.hitProducts)
+            {
+                string availiable = "В наличии";
+                string availiableClass = "";
+                if (!product.Availiable) { availiable = "Нет в наличии"; availiableClass = "not-availiable"; }
+                <div class="g41-product @firstProductClass ">
+                    @{firstProductClass = "";}
+                    <div class="g41-img-block">
+                        <img src=@product.Img class="g41-img">
+                        <div class="img-buttons">
+                            <a href="" class="img-button img-first"></a>
+                            <a href="" class="img-button"></a>
+                            <a href="" class="img-button"></a>
+                            <a href="" class="img-button"></a>
+                            <a href="" class="img-button"></a>
+                        </div>
+                    </div>
+                    <a href="" class="g40-right-text">@product.Desc</a>
+                    <div class="stars">
+                        @{ for (int i = 1; i < 6; i++)
+                            {
+                                if (i > product.Stars)
+                                { <img src="/img/svg/empty-star.svg"> }
+                                else
+                                { <img src="/img/svg/gold-star.svg"> }
+                            }
+                        }
+                    </div>
+                    <span class="g40-info-tight-text-availability @availiableClass ">@availiable</span>
+                    <span class="g40-price">@String.Format("{0:0,0}", product.Price) руб.</span>
+                    <div class="g40-basket">
+                        <img src="/img/svg/g40-basket.svg">
+                        <a href="" class="g40-basket-text">В корзину</a>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <div class="product-arrows">
+        <button id="hitsLeft" class="arrow-btn"><img src="/img/svg/left-arrow-sale.svg" class="arrow-img"></button>
+        <button id="hitsRight" class="arrow-btn"> <img src="/img/svg/right-arrow-sale.svg" class="arrow-img"></button>
+    </div>
+    <div class="bottom-buttons">
+        <div class="left-button-group">
+            <button id="button_left_arrow" class="button-pages">
+                <div class="button-content">
+                    <img src="/img/svg/arrowleft.svg">
+                </div>
+            </button>
+            <button id="button_1_page" class="button-pages">
+                <div class="button-content active">
+                    <span class="button-content-num">1</span>
+                </div>
+            </button>
+            <button id="button_2_page" class="button-pages">
+                <div class="button-content">
+                    <span class="button-content-num">2</span>
+                </div>
+            </button>
+            <button id="button_3_page" class="button-pages">
+                <div class="button-content">
+                    <span class="button-content-num">3</span>
+                </div>
+            </button>
+            <button id="button_right_arrow" class="button-pages">
+                <div class="button-content">
+                    <img src="/img/svg/arrowright.svg">
+                </div>
+            </button>
+        </div>
+        <div class="right-button-group">
+            <span class="right-button-group-text">Вы посмотрели 24 из 1045 товаров</span>
+            <button id="show_more" class="button-show-more">
+                <div class="show-more-text">Показать еще</div>
+            </button>
+        </div>
+    </div>
+</div>
+
