@@ -17,7 +17,7 @@ namespace AdvantShop.Data
         {
             if (!content.Categories.Any())
             {
-                //content.Categories.AddRange(Categories.Select(c => c.Value));
+                content.Categories.AddRange(Categories.Select(c => c.Value));
             }
 
             if (!content.Products.Any())
@@ -77,97 +77,7 @@ namespace AdvantShop.Data
                         Novelty = false,
                         Price = 6900,
                         Category = Categories["Бытовая техника"]
-                    },
-                     new Product
-                     {
-                         Img = "/img/forBd/furn/mirror.png",
-                         Desc = "Зеркало раритетное",
-                         Stars = 3,
-                         Availiable = false,
-                         Hit = false,
-                         Novelty = false,
-                         Price = 89000,
-                         Category = Categories["Мебель"]
-                     },
-                     new Product
-                     {
-                         Img = "/img/forBd/furn/bed.png",
-                         Desc = "Кровать двуспальная best-slip",
-                         Stars = 5,
-                         Availiable = true,
-                         Hit = false,
-                         Novelty = false,
-                         Price = 40000,
-                         Category = Categories["Мебель"]
-                     },
-                     new Product
-                     {
-                         Img = "/img/forBd/furn/kamin.png",
-                         Desc = "Камин безопасный Fire-class",
-                         Stars = 4,
-                         Availiable = true,
-                         Hit = false,
-                         Novelty = false,
-                         Price = 32000,
-                         Category = Categories["Мебель"]
-                     },
-                     new Product
-                     {
-                         Img = "/img/forBd/cloth/suit.png",
-                         Desc = "Мужской костюм черный",
-                         Stars = 5,
-                         Availiable = true,
-                         Hit = false,
-                         Novelty = false,
-                         Price = 10000,
-                         Category = Categories["Одежда"]
-                     },
-                     new Product
-                     {
-                         Img = "/img/forBd/cloth/tshirt.png",
-                         Desc = "Зеленая футболка",
-                         Stars = 2,
-                         Availiable = true,
-                         Hit = false,
-                         Novelty = false,
-                         Price = 200,
-                         Category = Categories["Одежда"]
-                     },
-                     new Product
-                     {
-                         Img = "/img/forBd/cloth/kurtka.png",
-                         Desc = "Кожанная куртка мужская",
-                         Stars = 5,
-                         Availiable = true,
-                         Hit = false,
-                         Novelty = false,
-                         Price = 6000,
-                         Category = Categories["Одежда"]
-                     }
-
-                //},
-                //new Product
-                //{
-                //    Img = "/img/svg/bluza.svg",
-                //    Desc = "Блуза Concepti Mi 9 Lite 6/128GB",
-                //    Stars = 4,
-                //    Availiable = true,
-                //    Hit = true,
-                //    Novelty = false,
-                //    Price = 23600,
-                //    Category = Categories["Одежда"]
-                //},
-                //new Product
-                //{
-                //    Img = "/img/svg/sofa.svg",
-                //    Desc = "kuks классный Textile Rustic",
-                //    Stars = 4,
-                //    Availiable = true,
-                //    Hit = true,
-                //    Novelty = false,
-                //    Price = 228,
-                //    Category = Categories["Мебель"]
-                //}
+                    }
                 );
             }
             //content.SaveChanges();
