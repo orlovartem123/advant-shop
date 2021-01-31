@@ -11,20 +11,20 @@ namespace AdvantShop.Data.Repository
     public class ProductRepository : IAllProducts
     {
 
-        private readonly AppDBContent appDBContent;
+        private readonly Lic855Context lic855Context;
 
-        public ProductRepository(AppDBContent appDBContent)
+        public ProductRepository(Lic855Context lic855Context)
         {
-            this.appDBContent = appDBContent;
+            this.lic855Context = lic855Context;
         }
 
-        public IEnumerable<Product> AllProducts => appDBContent.Products.Include(c => c.Category);
+        public IEnumerable<Product> AllProducts => lic855Context.Product;
 
-        public IEnumerable<Product> HitProducts => appDBContent.Products.Where(p => p.Hit).Include(c => c.Category);
+        public IEnumerable<Product> HitProducts => lic855Context.Product.Where(p=>p.Bestseller==true);
 
-        public IEnumerable<Product> NoveltyProducts => appDBContent.Products.Where(p => p.Novelty).Include(c => c.Category);
+        public IEnumerable<Product> NoveltyProducts => lic855Context.Product.Where(p => p.New == true);
 
-        public Product GetProduct(int productId) => appDBContent.Products.FirstOrDefault(p=>p.Id==productId);
+        public Product GetProduct(int productId) => lic855Context.Product.FirstOrDefault(p=>p.ProductId==productId);
        
     }
 }

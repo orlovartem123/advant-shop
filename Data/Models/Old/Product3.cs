@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AdvantShop.Data.Models
 {
-    public class Product
+    public class Product3
     {
         public int Id { get; set; }
 
@@ -25,6 +25,6 @@ namespace AdvantShop.Data.Models
 
         public ulong Price { get; set; }
 
-        public virtual Category Category { get; set; }
+        public virtual Category2 Category { get; set; }
     }
 }

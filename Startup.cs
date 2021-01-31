@@ -28,7 +28,7 @@ namespace AdvantShop
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDBContent>(options => options.UseSqlServer(_configString.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<Lic855Context>(options => options.UseSqlServer(_configString.GetConnectionString("DefaultConnection")));
             services.AddTransient<IAllCategories, CategoryRepository>();
             services.AddTransient<IAllProducts, ProductRepository>();
             services.AddMvc();
@@ -47,11 +47,11 @@ namespace AdvantShop
                 routes.MapRoute(name: "default", template: "{controller=Products}/{action=Index}/{id?}");
                 routes.MapRoute(name: "categories", template: "Categories/{action}/{category?}", defaults: new { Controller= "Categories", action="List" });
             });
-            using (var scope = app.ApplicationServices.CreateScope())
-            {
-                AppDBContent content = scope.ServiceProvider.GetRequiredService<AppDBContent>();
-                DBObjects.Initial(content);
-            }
+            //using (var scope = app.ApplicationServices.CreateScope())
+            //{
+            //    AppDBContent content = scope.ServiceProvider.GetRequiredService<AppDBContent>();
+            //    DBObjects.Initial(content);
+            //}
         }
     }
 }

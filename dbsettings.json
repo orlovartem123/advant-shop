@@ -1,5 +1,5 @@
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=(localdb)\\MSSQLLocalDB;Database=AdvantShop;Trusted_Connection=True;MultipleActiveResultSets=true"
+    "DefaultConnection": "Server=.\\SQLEXPRESS;Database=lic8.5.5;Trusted_Connection=True"
   }
 }

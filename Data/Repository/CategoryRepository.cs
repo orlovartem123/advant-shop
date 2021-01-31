@@ -10,13 +10,13 @@ namespace AdvantShop.Data.Repository
     public class CategoryRepository : IAllCategories
     {
 
-        private readonly AppDBContent appDBContent;
+        private readonly Lic855Context lic855Context;
 
-        public CategoryRepository(AppDBContent appDBContent)
+        public CategoryRepository(Lic855Context lic855Context)
         {
-            this.appDBContent = appDBContent;
+            this.lic855Context = lic855Context;
         }
 
-        public IEnumerable<Category> AllCategories => appDBContent.Categories;
+        public IEnumerable<Category1> AllCategories => lic855Context.Category1;
     }
 }

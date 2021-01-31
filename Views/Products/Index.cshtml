@@ -149,11 +149,11 @@
             {
                 string availiable = "В наличии";
                 string availiableClass = "";
-                if (!product.Availiable) { availiable = "Нет в наличии"; availiableClass = "not-availiable"; }
+                if (!product.OnSale==true) { availiable = "Нет в наличии"; availiableClass = "not-availiable"; }
                 <div class="g40-product @firstProductClass ">
                     @{firstProductClass = "";}
                     <div class="g41-img-block">
-                        <img src=@product.Img class="g41-img">
+                        <img src=@product.Name class="g41-img">
                         <div class="img-buttons">
                             <a href="" class="img-button img-first"></a>
                             <a href="" class="img-button"></a>
@@ -162,11 +162,11 @@
                             <a href="" class="img-button"></a>
                         </div>
                     </div>
-                    <a href="" class="g40-right-text">@product.Desc</a>
+                    <a href="" class="g40-right-text">@product.Name</a>
                     <div class="stars">
                         @{ for (int i = 1; i < 6; i++)
                             {
-                                if (i > product.Stars)
+                                if (i > 4)
                                 { <img src="/img/svg/empty-star.svg"> }
                                 else
                                 { <img src="/img/svg/gold-star.svg"> }
@@ -174,7 +174,7 @@
                         }
                     </div>
                     <span class="g40-info-tight-text-availability @availiableClass ">@availiable</span>
-                    <span class="g40-price">@String.Format("{0:0,0}", product.Price) руб.</span>
+                    <span class="g40-price">@String.Format("{0:0,0}", product.Fee) руб.</span>
                     <div class="g40-basket">
                         <img src="/img/svg/g40-basket.svg">
                         <a href="" class="g40-basket-text">В корзину</a>
@@ -204,11 +204,11 @@
             {
                 string availiable = "В наличии";
                 string availiableClass = "";
-                if (!product.Availiable) { availiable = "Нет в наличии"; availiableClass = "not-availiable"; }
+                if (!product.OnSale==true) { availiable = "Нет в наличии"; availiableClass = "not-availiable"; }
                 <div class="g41-product @firstProductClass ">
                     @{firstProductClass = "";}
                     <div class="g41-img-block">
-                        <img src=@product.Img class="g41-img">
+                        <img src=@product.UrlPath class="g41-img">
                         <div class="img-buttons">
                             <a href="" class="img-button img-first"></a>
                             <a href="" class="img-button"></a>
@@ -217,11 +217,11 @@
                             <a href="" class="img-button"></a>
                         </div>
                     </div>
-                    <a href="" class="g40-right-text">@product.Desc</a>
+                    <a href="" class="g40-right-text">@product.Name</a>
                     <div class="stars">
                         @{ for (int i = 1; i < 6; i++)
                             {
-                                if (i > product.Stars)
+                                if (i > 4)
                                 { <img src="/img/svg/empty-star.svg"> }
                                 else
                                 { <img src="/img/svg/gold-star.svg"> }
@@ -229,7 +229,7 @@
                         }
                     </div>
                     <span class="g40-info-tight-text-availability @availiableClass ">@availiable</span>
-                    <span class="g40-price">@String.Format("{0:0,0}", product.Price) руб.</span>
+                    <span class="g40-price">@String.Format("{0:0,0}", product.Fee) руб.</span>
                     <div class="g40-basket">
                         <img src="/img/svg/g40-basket.svg">
                         <a href="" class="g40-basket-text">В корзину</a>

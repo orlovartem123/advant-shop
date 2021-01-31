@@ -8,6 +8,6 @@ namespace AdvantShop.Data.Interfaces
 {
     public interface IAllCategories
     {
-        IEnumerable<Category> AllCategories { get; }
+        IEnumerable<Category1> AllCategories { get; }
     }
 }
