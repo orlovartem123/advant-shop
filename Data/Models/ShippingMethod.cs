@@ -36,6 +36,10 @@ namespace AdvantShop.Data.Models
         public double? Extracharge { get; set; }
         public bool? ExtrachargeFromOrder { get; set; }
         public int? ExtraDeliveryTime { get; set; }
+        public bool? MoveToEnd { get; set; }
+        public bool? ShowIfNoOtherShippings { get; set; }
+        public int? CurrencyId { get; set; }
+        public string ModuleStringId { get; set; }
 
         public ICollection<Order> Order { get; set; }
         public ICollection<ShippingCache> ShippingCache { get; set; }

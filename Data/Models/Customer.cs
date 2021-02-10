@@ -43,6 +43,7 @@ namespace AdvantShop.Data.Models
         public int? SortOrder { get; set; }
         public string Organization { get; set; }
         public int? ClientStatus { get; set; }
+        public string RegisteredFrom { get; set; }
 
         public CustomerGroup CustomerGroup { get; set; }
         public BindedCustomer BindedCustomer { get; set; }

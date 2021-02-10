@@ -1,4 +1,5 @@
-﻿using AdvantShop.Data.Models;
+﻿using AdvantShop.Data.Interfaces;
+using AdvantShop.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,11 @@ namespace AdvantShop.ViewModels
 
         public IEnumerable<Product> noveltyProducts { get; set; }
 
-        public ProductsListViewModel(IEnumerable<Product> allProducts, IEnumerable<Product> hitProducts, IEnumerable<Product> noveltyProducts)
+        public ProductsListViewModel(IAllProducts allProducts)
         {
-            this.allProducts = allProducts;
-            this.hitProducts = hitProducts;
-            this.noveltyProducts = noveltyProducts;
+            this.allProducts = allProducts.AllProducts;
+            this.hitProducts = allProducts.HitProducts;
+            this.noveltyProducts = allProducts.NoveltyProducts;
         }
 
     }

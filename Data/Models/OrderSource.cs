@@ -10,5 +10,6 @@ namespace AdvantShop.Data.Models
         public int SortOrder { get; set; }
         public bool Main { get; set; }
         public string Type { get; set; }
+        public int? ObjId { get; set; }
     }
 }

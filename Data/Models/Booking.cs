@@ -36,6 +36,7 @@ namespace AdvantShop.Data.Models
         public int? PaymentMethodId { get; set; }
         public string ArchivedPaymentName { get; set; }
         public int? OrderId { get; set; }
+        public string AdminComment { get; set; }
 
         public Affiliate Affiliate { get; set; }
         public Managers Manager { get; set; }

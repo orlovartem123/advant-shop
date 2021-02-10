@@ -12,15 +12,19 @@ namespace AdvantShop.Controllers
     {
         private readonly IAllProducts allProducts;
 
-        public ProductsController(IAllProducts allProducts)
+        private readonly IAllCategories allCategories;
+
+        public ProductsController(IAllProducts allProducts,IAllCategories allCategories)
         {
             this.allProducts = allProducts;
+            this.allCategories = allCategories;
         }
 
-       
         public ViewResult Index()
         {
-            ProductsListViewModel obj = new ProductsListViewModel(allProducts.AllProducts, allProducts.HitProducts, allProducts.NoveltyProducts);
+            var categoriesView = new CategoriesListViewModel("catalog",allProducts,allCategories,null,0);
+            var productsView = new ProductsListViewModel(allProducts);
+            CategoriesAndProductsViewModel obj = new CategoriesAndProductsViewModel(categoriesView, productsView);
             return View(obj);
         }
     }

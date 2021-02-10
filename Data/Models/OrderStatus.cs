@@ -21,6 +21,7 @@ namespace AdvantShop.Data.Models
         public bool IsCompleted { get; set; }
         public bool? Hidden { get; set; }
         public bool CancelForbidden { get; set; }
+        public bool? ShowInMenu { get; set; }
 
         public ICollection<Order> Order { get; set; }
         public ICollection<SmsTemplateOnOrderChanging> SmsTemplateOnOrderChanging { get; set; }

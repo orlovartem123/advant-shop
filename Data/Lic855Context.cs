@@ -1,9 +1,8 @@
 ﻿using System;
-using AdvantShop.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace AdvantShop.Data
+namespace AdvantShop.Data.Models
 {
     public partial class Lic855Context : DbContext
     {
@@ -78,6 +77,9 @@ namespace AdvantShop.Data
         public virtual DbSet<DealStatus> DealStatus { get; set; }
         public virtual DbSet<Departments> Departments { get; set; }
         public virtual DbSet<DownloadableContent> DownloadableContent { get; set; }
+        public virtual DbSet<DpdCashCity> DpdCashCity { get; set; }
+        public virtual DbSet<DpdParcelShops> DpdParcelShops { get; set; }
+        public virtual DbSet<DpdTerminals> DpdTerminals { get; set; }
         public virtual DbSet<Error404> Error404 { get; set; }
         public virtual DbSet<ExportFeed> ExportFeed { get; set; }
         public virtual DbSet<ExportFeedExcludedProducts> ExportFeedExcludedProducts { get; set; }
@@ -222,8 +224,12 @@ namespace AdvantShop.Data
         public virtual DbSet<ShippingProductExcluded> ShippingProductExcluded { get; set; }
         public virtual DbSet<ShippingRegion> ShippingRegion { get; set; }
         public virtual DbSet<ShippingRegionExcluded> ShippingRegionExcluded { get; set; }
+        public virtual DbSet<ShippingReplaceGeo> ShippingReplaceGeo { get; set; }
         public virtual DbSet<ShoppingCart> ShoppingCart { get; set; }
         public virtual DbSet<ShoppingCart1> ShoppingCart1 { get; set; }
+        public virtual DbSet<SimalandModification> SimalandModification { get; set; }
+        public virtual DbSet<SimalandModifier> SimalandModifier { get; set; }
+        public virtual DbSet<SimalandSettings> SimalandSettings { get; set; }
         public virtual DbSet<Size> Size { get; set; }
         public virtual DbSet<SmsLog> SmsLog { get; set; }
         public virtual DbSet<SmsTemplate> SmsTemplate { get; set; }
@@ -258,6 +264,7 @@ namespace AdvantShop.Data
         public virtual DbSet<VkCategory> VkCategory { get; set; }
         public virtual DbSet<VkCategoryCategory> VkCategoryCategory { get; set; }
         public virtual DbSet<VkMessage> VkMessage { get; set; }
+        public virtual DbSet<VkOrderOrder> VkOrderOrder { get; set; }
         public virtual DbSet<VkProduct> VkProduct { get; set; }
         public virtual DbSet<VoiceTheme> VoiceTheme { get; set; }
 
@@ -291,10 +298,11 @@ namespace AdvantShop.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            optionsBuilder.EnableSensitiveDataLogging();
             if (!optionsBuilder.IsConfigured)
             {
                 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                //optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=lic8.5.5;Trusted_Connection=True");
+                optionsBuilder.UseSqlServer("data source='LAPTOP-4UI9Q996\\SQLEXPRESS'; initial catalog='lic_adv_dev'; user id='sa'; password='123123'; Persist Security Info='True'; Connect Timeout='60'");
             }
         }
 
@@ -766,6 +774,8 @@ namespace AdvantShop.Data
 
                 entity.HasIndex(e => new { e.BeginDate, e.EndDate })
                     .HasName("Date_Booking");
+
+                entity.Property(e => e.AdminComment).HasMaxLength(255);
 
                 entity.Property(e => e.ArchivedPaymentName).HasMaxLength(255);
 
@@ -1239,6 +1249,8 @@ namespace AdvantShop.Data
 
                 entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
 
+                entity.Property(e => e.District).HasMaxLength(70);
+
                 entity.Property(e => e.Entrance).HasMaxLength(10);
 
                 entity.Property(e => e.Floor).HasMaxLength(10);
@@ -1496,6 +1508,8 @@ namespace AdvantShop.Data
 
                 entity.Property(e => e.Patronymic).HasMaxLength(70);
 
+                entity.Property(e => e.RegisteredFrom).HasMaxLength(500);
+
                 entity.Property(e => e.RegistrationDateTime).HasColumnType("datetime");
 
                 entity.Property(e => e.SortOrder).HasDefaultValueSql("((0))");
@@ -1696,6 +1710,113 @@ namespace AdvantShop.Data
                 entity.Property(e => e.Version)
                     .IsRequired()
                     .HasMaxLength(20);
+            });
+
+            modelBuilder.Entity<DpdCashCity>(entity =>
+            {
+                entity.HasKey(e => e.CityId);
+
+                entity.ToTable("DpdCashCity", "Shipping");
+
+                entity.Property(e => e.CityId).ValueGeneratedNever();
+
+                entity.Property(e => e.Abbreviation).HasMaxLength(50);
+
+                entity.Property(e => e.CityName)
+                    .IsRequired()
+                    .HasMaxLength(255);
+
+                entity.Property(e => e.CountryCode)
+                    .IsRequired()
+                    .HasMaxLength(2);
+
+                entity.Property(e => e.RegionName)
+                    .IsRequired()
+                    .HasMaxLength(255);
+            });
+
+            modelBuilder.Entity<DpdParcelShops>(entity =>
+            {
+                entity.HasKey(e => e.Code);
+
+                entity.ToTable("DpdParcelShops", "Shipping");
+
+                entity.HasIndex(e => e.CityId)
+                    .HasName("DpdParcelShops_CityId");
+
+                entity.Property(e => e.Code)
+                    .HasMaxLength(255)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Address)
+                    .IsRequired()
+                    .HasMaxLength(255);
+
+                entity.Property(e => e.CityName)
+                    .IsRequired()
+                    .HasMaxLength(255);
+
+                entity.Property(e => e.CountryCode)
+                    .IsRequired()
+                    .HasMaxLength(2);
+
+                entity.Property(e => e.ExtraServices)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.RegionName)
+                    .IsRequired()
+                    .HasMaxLength(255);
+
+                entity.Property(e => e.SelfDeliveryTimes).HasMaxLength(255);
+
+                entity.Property(e => e.Services)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.Type)
+                    .IsRequired()
+                    .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<DpdTerminals>(entity =>
+            {
+                entity.HasKey(e => e.Code);
+
+                entity.ToTable("DpdTerminals", "Shipping");
+
+                entity.HasIndex(e => e.CityId)
+                    .HasName("DpdTerminals_CityId");
+
+                entity.Property(e => e.Code)
+                    .HasMaxLength(255)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Address)
+                    .IsRequired()
+                    .HasMaxLength(255);
+
+                entity.Property(e => e.CityName)
+                    .IsRequired()
+                    .HasMaxLength(255);
+
+                entity.Property(e => e.CountryCode)
+                    .IsRequired()
+                    .HasMaxLength(2);
+
+                entity.Property(e => e.ExtraServices)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.RegionName)
+                    .IsRequired()
+                    .HasMaxLength(255);
+
+                entity.Property(e => e.SelfDeliveryTimes).HasMaxLength(255);
+
+                entity.Property(e => e.Services)
+                    .IsRequired()
+                    .HasMaxLength(100);
             });
 
             modelBuilder.Entity<Error404>(entity =>
@@ -2127,9 +2248,13 @@ namespace AdvantShop.Data
 
                 entity.Property(e => e.DomainUrl).IsRequired();
 
+                entity.Property(e => e.ModifiedDate).HasColumnType("datetime");
+
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(260);
+
+                entity.Property(e => e.ScreenShotDate).HasColumnType("datetime");
 
                 entity.Property(e => e.Template).IsRequired();
 
@@ -2220,6 +2345,8 @@ namespace AdvantShop.Data
 
                 entity.Property(e => e.DeliveryTime).HasMaxLength(255);
 
+                entity.Property(e => e.District).HasMaxLength(70);
+
                 entity.Property(e => e.Email)
                     .IsRequired()
                     .HasMaxLength(255);
@@ -2247,6 +2374,8 @@ namespace AdvantShop.Data
                 entity.Property(e => e.Region).HasMaxLength(70);
 
                 entity.Property(e => e.ShippingName).HasMaxLength(255);
+
+                entity.Property(e => e.Zip).HasMaxLength(70);
             });
 
             modelBuilder.Entity<LeadCurrency>(entity =>
@@ -2350,13 +2479,13 @@ namespace AdvantShop.Data
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Color).HasMaxLength(50);
+                entity.Property(e => e.Color).HasMaxLength(300);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(255);
 
-                entity.Property(e => e.Size).HasMaxLength(50);
+                entity.Property(e => e.Size).HasMaxLength(300);
 
                 entity.HasOne(d => d.Lead)
                     .WithMany(p => p.LeadItem)
@@ -3196,7 +3325,7 @@ namespace AdvantShop.Data
 
                 entity.Property(e => e.OrderId).ValueGeneratedNever();
 
-                entity.Property(e => e.Apartment).HasMaxLength(10);
+                entity.Property(e => e.Apartment).HasMaxLength(50);
 
                 entity.Property(e => e.City).HasMaxLength(255);
 
@@ -3215,6 +3344,8 @@ namespace AdvantShop.Data
                     .HasColumnName("CustomerIP")
                     .HasMaxLength(70);
 
+                entity.Property(e => e.District).HasMaxLength(255);
+
                 entity.Property(e => e.Email).HasMaxLength(70);
 
                 entity.Property(e => e.Entrance).HasMaxLength(10);
@@ -3225,7 +3356,7 @@ namespace AdvantShop.Data
 
                 entity.Property(e => e.Floor).HasMaxLength(10);
 
-                entity.Property(e => e.House).HasMaxLength(10);
+                entity.Property(e => e.House).HasMaxLength(50);
 
                 entity.Property(e => e.LastName)
                     .IsRequired()
@@ -3766,11 +3897,11 @@ namespace AdvantShop.Data
                 entity.HasIndex(e => new { e.UrlPath, e.ProductId })
                     .HasName("Product_UrlPath");
 
-                entity.HasIndex(e => new { e.Enabled, e.CategoryEnabled, e.Discount })
-                    .HasName("ProductDiscountEnabled");
-
                 entity.HasIndex(e => new { e.Enabled, e.New, e.CategoryEnabled })
                     .HasName("Product_New_Enabled");
+
+                entity.HasIndex(e => new { e.Enabled, e.CategoryEnabled, e.Discount, e.DiscountAmount })
+                    .HasName("ProductDiscountEnabled");
 
                 entity.HasIndex(e => new { e.ProductId, e.Enabled, e.BrandId, e.CategoryEnabled })
                     .HasName("Product_Brand_Enabled");
@@ -4806,6 +4937,8 @@ namespace AdvantShop.Data
 
                 entity.Property(e => e.ShippingMethodId).HasColumnName("ShippingMethodID");
 
+                entity.Property(e => e.ModuleStringId).HasMaxLength(150);
+
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(255);
@@ -4922,6 +5055,66 @@ namespace AdvantShop.Data
                     .HasConstraintName("FK_ShippingRegionExcluded_Region");
             });
 
+            modelBuilder.Entity<ShippingReplaceGeo>(entity =>
+            {
+                entity.ToTable("ShippingReplaceGeo", "Order");
+
+                entity.HasIndex(e => e.ShippingType)
+                    .HasName("ShippingReplaceGeo_ShippingType");
+
+                entity.Property(e => e.Comment).HasMaxLength(255);
+
+                entity.Property(e => e.InCityName)
+                    .IsRequired()
+                    .HasMaxLength(255);
+
+                entity.Property(e => e.InCountryIso2)
+                    .IsRequired()
+                    .HasColumnName("InCountryISO2")
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.InCountryName)
+                    .IsRequired()
+                    .HasMaxLength(70);
+
+                entity.Property(e => e.InDistrict)
+                    .IsRequired()
+                    .HasMaxLength(255);
+
+                entity.Property(e => e.InRegionName)
+                    .IsRequired()
+                    .HasMaxLength(70);
+
+                entity.Property(e => e.InZip)
+                    .IsRequired()
+                    .HasMaxLength(70);
+
+                entity.Property(e => e.OutCityName)
+                    .IsRequired()
+                    .HasMaxLength(255);
+
+                entity.Property(e => e.OutCountryName)
+                    .IsRequired()
+                    .HasMaxLength(70);
+
+                entity.Property(e => e.OutDistrict)
+                    .IsRequired()
+                    .HasMaxLength(255);
+
+                entity.Property(e => e.OutRegionName)
+                    .IsRequired()
+                    .HasMaxLength(70);
+
+                entity.Property(e => e.OutZip)
+                    .IsRequired()
+                    .HasMaxLength(70);
+
+                entity.Property(e => e.ShippingType)
+                    .IsRequired()
+                    .HasMaxLength(50);
+            });
+
             modelBuilder.Entity<ShoppingCart>(entity =>
             {
                 entity.HasKey(e => e.ShoppingCartItemId);
@@ -4978,6 +5171,51 @@ namespace AdvantShop.Data
                     .WithMany(p => p.ShoppingCart1)
                     .HasForeignKey(d => d.OfferId)
                     .HasConstraintName("FK_ShoppingCart_Offer");
+            });
+
+            modelBuilder.Entity<SimalandModification>(entity =>
+            {
+                entity.HasKey(e => e.ProductId);
+
+                entity.ToTable("SimalandModification", "Module");
+
+                entity.HasIndex(e => e.ModificationId);
+
+                entity.Property(e => e.ProductId).ValueGeneratedNever();
+
+                entity.Property(e => e.Value)
+                    .IsRequired()
+                    .HasMaxLength(255);
+
+                entity.HasOne(d => d.Modifier)
+                    .WithMany(p => p.SimalandModification)
+                    .HasForeignKey(d => d.ModifierId)
+                    .HasConstraintName("FK_SimalandModification_SimalandModifier");
+
+                entity.HasOne(d => d.Product)
+                    .WithOne(p => p.SimalandModification)
+                    .HasForeignKey<SimalandModification>(d => d.ProductId)
+                    .HasConstraintName("FK_SimalandModification_Product");
+            });
+
+            modelBuilder.Entity<SimalandModifier>(entity =>
+            {
+                entity.ToTable("SimalandModifier", "Module");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(255);
+            });
+
+            modelBuilder.Entity<SimalandSettings>(entity =>
+            {
+                entity.ToTable("SimalandSettings", "Module");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Value).IsRequired();
             });
 
             modelBuilder.Entity<Size>(entity =>
@@ -5566,6 +5804,18 @@ namespace AdvantShop.Data
                 entity.Property(e => e.Date).HasColumnType("datetime");
 
                 entity.Property(e => e.Type).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<VkOrderOrder>(entity =>
+            {
+                entity.HasKey(e => new { e.OrderId, e.VkOrderId });
+
+                entity.ToTable("VkOrder_Order", "Vk");
+
+                entity.HasOne(d => d.Order)
+                    .WithMany(p => p.VkOrderOrder)
+                    .HasForeignKey(d => d.OrderId)
+                    .HasConstraintName("FK_VkOrder_Order_Order");
             });
 
             modelBuilder.Entity<VkProduct>(entity =>

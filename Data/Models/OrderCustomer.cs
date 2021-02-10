@@ -28,6 +28,7 @@ namespace AdvantShop.Data.Models
         public string Entrance { get; set; }
         public string Floor { get; set; }
         public string Organization { get; set; }
+        public string District { get; set; }
 
         public Order Order { get; set; }
     }

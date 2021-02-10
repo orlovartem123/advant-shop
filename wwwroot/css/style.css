@@ -3,8 +3,7 @@
     font-family: 'Rubik';
     font-style: normal;
     font-weight: 400;
-    src: local(''),
-    url('../fonts/rubik-v11-latin_cyrillic-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/rubik-v11-latin_cyrillic-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    src: local(''), url('../fonts/rubik-v11-latin_cyrillic-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/rubik-v11-latin_cyrillic-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 html {
@@ -61,10 +60,10 @@ a {
     padding-left: 4px;
 }
 
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-}
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+    }
 
 .content {
     float: right;
@@ -194,7 +193,6 @@ a {
 .menu {
     position: relative;
     width: 264px;
-    height: 533px;
     margin-top: 24px;
     background: #FFFFFF;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
@@ -203,7 +201,7 @@ a {
 
 .menu-item, .last-menu-item {
     width: 100%;
-    height: 48px;
+    height: 100%;
     padding: 0 20px 0 22px;
     display: flex;
     align-items: center;
@@ -211,6 +209,40 @@ a {
     font-size: 14px;
     border-left: 2px solid #FFFFFF;
     border-right: 2px solid #FFFFFF;
+    border-bottom: 1px solid #EFEFF4;
+}
+
+.menu-item-wrapper {
+    width: 100%;
+    height: 48px;
+}
+
+    .menu-item-wrapper:hover .menu-sidebar-dop {
+        display: block;
+    }
+
+.menu-sidebar-dop {
+    display: none;
+    position: absolute;
+    width: 264px;
+    left: 264px;
+    top: 0;
+    min-height: 100%;
+    z-index: 65;
+    background: #FFFFFF;
+    border: 1px solid #EFEFF4;
+    border-radius: 6px;
+}
+
+.dop-sidebar-ref-block {
+    position: relative;
+    width: 264px;
+    min-height: 16px;
+    margin-top: 6px;
+}
+
+.dop-sidebar-ref:hover {
+    color: black;
 }
 
 .last-menu-item:hover {
@@ -272,9 +304,9 @@ a {
     height: 49px;
 }
 
-.drop-list-wrapper:hover .drop-list {
-    display: block;
-}
+    .drop-list-wrapper:hover .drop-list {
+        display: block;
+    }
 
 .drop-list {
     display: none;
@@ -301,10 +333,9 @@ a {
     border-bottom: 1px solid #EFEFF4;
 }
 
-.drop-list-item:hover {
-    background: #F9F9F9;
-
-}
+    .drop-list-item:hover {
+        background: #F9F9F9;
+    }
 
 .drop-list-last-item:hover {
     background: #F9F9F9;
@@ -422,15 +453,14 @@ a {
     min-height: 294px;
     border-right: 1px solid #EFEFF4;
     border-bottom: 1px solid #EFEFF4;
-
 }
 
-.frame41-categories-list-item:hover {
-    border-top: 1px solid #2D9CEE;
-    border-left: 1px solid #2D9CEE;
-    border-right-color: #2D9CEE;
-    border-bottom-color: #2D9CEE;
-}
+    .frame41-categories-list-item:hover {
+        border-top: 1px solid #2D9CEE;
+        border-left: 1px solid #2D9CEE;
+        border-right-color: #2D9CEE;
+        border-bottom-color: #2D9CEE;
+    }
 
 
 .frame41-categories-list-item-wrapper-1 {
@@ -533,7 +563,7 @@ a {
 .stars {
     position: absolute;
     left: 0;
-    bottom: 80px;
+    bottom: 60px;
     width: 73px;
     height: 12px;
     display: flex;
@@ -580,6 +610,7 @@ a {
     justify-content: space-between;
     right: 0;
     top: 150px;
+    z-index: 6;
 }
 
 .g40-arrows {
@@ -647,12 +678,27 @@ a {
     min-width: 264px;
     height: 402px;
     margin-left: 22px;
+    z-index: 4;
+    border: 1px solid #EFEFF4;
+    border-radius: 6px;
 }
 
 .first-product {
     margin-left: 0;
 }
 
+.g41-product-ref {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: none;
+    opacity: .8;
+    z-index: 5;
+}
+
+    .g41-product-ref:hover {
+        box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.2);
+    }
 
 /*End test*/
 

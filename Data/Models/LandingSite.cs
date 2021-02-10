@@ -21,6 +21,9 @@ namespace AdvantShop.Data.Models
         public DateTime CreatedDate { get; set; }
         public int? ProductId { get; set; }
         public int? AdditionalSalesProductId { get; set; }
+        public string ScreenShot { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public DateTime? ScreenShotDate { get; set; }
 
         public ICollection<LandingDomain> LandingDomain { get; set; }
         public ICollection<LandingSiteProduct> LandingSiteProduct { get; set; }

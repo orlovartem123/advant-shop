@@ -21,6 +21,7 @@ namespace AdvantShop.Data.Models
         public string Structure { get; set; }
         public string Entrance { get; set; }
         public string Floor { get; set; }
+        public string District { get; set; }
 
         public Country CountryNavigation { get; set; }
         public Customer Customer { get; set; }

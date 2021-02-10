@@ -1,0 +1,57 @@
+.current-route {
+    position: relative;
+    width: 100%;
+    margin-top: 24px;
+}
+
+.route-item {
+    position: relative;
+}
+
+.categories-block {
+    margin-top: 20px;
+    position: relative;
+    width: 100%;
+    min-height: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    z-index: 60;
+}
+
+.category-item {
+    position: relative;
+    margin-left: 38px;
+    width: 180px;
+    height: 86px;
+    margin-top: 24px;
+    border-radius: 16px;
+    border: 1px solid #EFEFF4;
+}
+
+.first-category {
+    margin-left: 0;
+}
+
+.category-ref {
+    position: absolute;
+    color: black;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.load-more {
+    position: relative;
+    color: #2D9CEE;
+}
+
+.pages {
+    margin-top: 24px;
+    max-width: 220px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

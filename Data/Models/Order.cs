@@ -15,6 +15,7 @@ namespace AdvantShop.Data.Models
             OrderTax = new HashSet<OrderTax>();
             Task = new HashSet<Task>();
             Transaction1 = new HashSet<Transaction1>();
+            VkOrderOrder = new HashSet<VkOrderOrder>();
         }
 
         public int OrderId { get; set; }
@@ -73,6 +74,8 @@ namespace AdvantShop.Data.Models
         public double? TotalLength { get; set; }
         public double? TotalWidth { get; set; }
         public double? TotalHeight { get; set; }
+        public bool? AvailablePaymentCashOnDelivery { get; set; }
+        public bool? AvailablePaymentPickPoint { get; set; }
 
         public Lead Lead { get; set; }
         public Managers Manager { get; set; }
@@ -92,5 +95,6 @@ namespace AdvantShop.Data.Models
         public ICollection<OrderTax> OrderTax { get; set; }
         public ICollection<Task> Task { get; set; }
         public ICollection<Transaction1> Transaction1 { get; set; }
+        public ICollection<VkOrderOrder> VkOrderOrder { get; set; }
     }
 }

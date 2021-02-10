@@ -94,6 +94,7 @@ namespace AdvantShop.Data.Models
         public Brand Brand { get; set; }
         public Currency Currency { get; set; }
         public ProductExt ProductExt { get; set; }
+        public SimalandModification SimalandModification { get; set; }
         public ICollection<CouponProducts> CouponProducts { get; set; }
         public ICollection<CustomOptions> CustomOptions { get; set; }
         public ICollection<ExportFeedExcludedProducts> ExportFeedExcludedProducts { get; set; }

@@ -1,27 +1,78 @@
 ﻿@using AdvantShop.ViewModels
 @model CategoriesListViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
     Layout = "_Layout";
 }
 
-<div class="category-body">
-    <span class="category-name">@Model.CategoryName</span>
+
+@section menulist {
     @{
-        @*int count = 0;
+        int k = 2;
+        string menuClass = "menu-item";
+        int categoriesCount = Model.Categories.Count();
+        bool hasChild = false;
+        foreach (var category in Model.Categories)
+        {
+            hasChild = (Model.AllCategories.Where(c => c.ParentCategory == category.CategoryId).Count() != 0) ? true : false;
+            if (k++ == categoriesCount) { menuClass = "last-menu-item"; }
+            <li>
+                <div class="menu-item-wrapper">
+                    <a href="/Categories/List/@category.UrlPath " class="@menuClass ">
+                        <span class="link-text">@category.Name</span>
+                        @{ if (hasChild)
+                            { <img src="/img/svg/Shape.svg" alt="" class="link-img">}
+                        }
+                    </a>
+                    @{if (hasChild)
+                        {
+                            <div class="menu-sidebar-dop">
+                                @{
+                                    foreach (var child in Model.AllCategories.Where(c => c.ParentCategory == category.CategoryId))
+                                    {
+                                        <div class="dop-sidebar-ref-block"><a class="dop-sidebar-ref" href="/Categories/List/@child.UrlPath ">@child.Name</a></div>
+                                    }
+                                }
+                            </div>
+                        }
+                    }
+                </div>
+            </li>
+        }
+    }
+}
+
+<div class="current-route">
+    <a href="/" class="route-item">Главная</a>
+    <img src="/img/svg/Shape.svg" alt="" class="route-item">
+    <a href="/Categories/List/catalog" class="route-item">Каталог</a>
+    @{
+        foreach (var category in Model.categoriesPath)
+        {
+            <img src="/img/svg/Shape.svg" alt="" class="route-item">
+            <a href="/Categories/List/@category.UrlPath " class="route-item">@category.Name</a>
+        }
+    }
+</div>
+
+<div class="category-body">
+    @{
+        int count = 0;
         string positionClass = "first-product";
-        foreach (var product in Model.Products)
+        foreach (var product in Model.ProductsByCategory.Skip((Model.Page - 1) * Model.ProductsOnPage).Take(Model.ProductsOnPage))
         {
             string availiable = "В наличии";
             string availiableClass = "";
-            if (!product.Availiable) { availiable = "Нет в наличии"; availiableClass = "not-availiable"; }
+            if (!product.OnSale == true) { availiable = "Нет в наличии"; availiableClass = "not-availiable"; }
             <div class="g41-product category-body-item @positionClass ">
                 @{
                     count++;
                     positionClass = (count % 3 == 0) ? "first-product" : "";
                 }
+                <a href="" class="g41-product-ref"></a>
                 <div class="g41-img-block">
-                    <img src=@product.Img class="g41-img">
+                    <img src="@Model.getProductImg(product.ProductId) " class="g41-img">
                     <div class="img-buttons">
                         <a href="" class="img-button img-first"></a>
                         <a href="" class="img-button"></a>
@@ -31,11 +82,11 @@
                     </div>
                 </div>
                 <div class="stars"></div>
-                <a href="" class="g40-center-text">@product.Desc</a>
+                <a href="" class="g40-center-text">@product.Name</a>
                 <div class="stars">
                     @{ for (int i = 1; i < 6; i++)
                         {
-                            if (i > product.Stars)
+                            if (i > 4)
                             { <img src="/img/svg/empty-star.svg"> }
                             else
                             { <img src="/img/svg/gold-star.svg"> }
@@ -43,12 +94,30 @@
                     }
                 </div>
                 <span class="g40-info-tight-text-availability @availiableClass ">@availiable</span>
-                <span class="g40-price">@String.Format("{0:0,0}", product.Price) руб.</span>
+                <span class="g40-price">@String.Format("{0:0,0}", Model.getProductPrice(product.ProductId)) @Model.getProductCurrency(product.CurrencyId)</span>
                 <div class="g40-basket">
                     <img src="/img/svg/g40-basket.svg">
                     <a href="" class="g40-basket-text">В корзину</a>
                 </div>
             </div>
-        }*@
+        }
+    }
+</div>
+<div class="pages">
+    @{
+        string url = Model.CurrentCategory.UrlPath;
+        //int nextPageCount=
+        if (Model.Page > 1 && Model.ProductsByCategory.Count() > 0)
+        {
+            int pageNum = Model.Page - 1;
+            string page = pageNum.ToString();
+            <a asp-controller="Categories" asp-action="List" asp-all-route-data='new Dictionary<string,string> { { "category", url }, {"page", page } }' class="load-more">Предыдущая</a>
+        }
+        if ((Model.ProductsOnPage * Model.Page) < (Model.ProductsByCategory.Count()))
+        {
+            int pageNum = Model.Page + 1;
+            string page = pageNum.ToString();
+            <a asp-controller="Categories" asp-action="List" asp-all-route-data='new Dictionary<string,string> { { "category", url }, {"page", page } }' class="load-more">Следующая</a>
+        }
     }
 </div>

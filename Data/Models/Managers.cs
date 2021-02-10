@@ -28,6 +28,7 @@ namespace AdvantShop.Data.Models
         public int? DepartmentId { get; set; }
         public string Position { get; set; }
         public bool? Active { get; set; }
+        public string Sign { get; set; }
 
         public Customer Customer { get; set; }
         public Departments Department { get; set; }

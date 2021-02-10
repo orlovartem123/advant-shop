@@ -21,6 +21,7 @@ namespace AdvantShop.Data.Models
         public string PhoneNumber { get; set; }
         public string MobilePhoneNumber { get; set; }
         public string Zip { get; set; }
+        public string District { get; set; }
 
         public Region Region { get; set; }
         public ICollection<Affiliate> Affiliate { get; set; }

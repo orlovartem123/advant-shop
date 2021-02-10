@@ -46,6 +46,7 @@ namespace AdvantShop.Data.Models
         public DateTime DateModified { get; set; }
         public DateTime DateAdded { get; set; }
         public string ModifiedBy { get; set; }
+        public bool? ShowOnMainPage { get; set; }
 
         public Category1 ParentCategoryNavigation { get; set; }
         public CategoryRewardPercent CategoryRewardPercent { get; set; }

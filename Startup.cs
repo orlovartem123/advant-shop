@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AdvantShop.Data;
 using AdvantShop.Data.Interfaces;
+using AdvantShop.Data.Models;
 using AdvantShop.Data.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -43,15 +44,12 @@ namespace AdvantShop
             }
             app.UseStaticFiles();
             //app.UseMvcWithDefaultRoute();
-            app.UseMvc(routes=>{
+            app.UseMvc(routes =>
+            {
                 routes.MapRoute(name: "default", template: "{controller=Products}/{action=Index}/{id?}");
-                routes.MapRoute(name: "categories", template: "Categories/{action}/{category?}", defaults: new { Controller= "Categories", action="List" });
+                routes.MapRoute(name: "categories", template: "Categories/{action}/{category?}/{page?}", defaults: new { Controller = "Categories", action = "List", page = "1" });
             });
-            //using (var scope = app.ApplicationServices.CreateScope())
-            //{
-            //    AppDBContent content = scope.ServiceProvider.GetRequiredService<AppDBContent>();
-            //    DBObjects.Initial(content);
-            //}
+
         }
     }
 }

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/css/buttons.css">
     <link rel="stylesheet" href="/css/from-big-text.css">
     <link rel="stylesheet" href="/css/category-body.css">
+    <link rel="stylesheet" href="~/css/catalog.css">
     <script src="/js/jq.js"></script>
     <script src="/js/scripts.js"></script>
 </head>
@@ -60,79 +61,14 @@
     <div class="layout">
         <div class="sidebar">
             <div class="group27">
-                <div class="group27-items">
+                <a href="/Categories/List/catalog" class="group27-items">
                     <img src="/img/svg/burger.svg" alt="" class="burger-img">
                     <div class="group27-text">Каталог товаров</div>
-                </div>
+                </a>
             </div>
             <nav class="menu">
                 <ul class="menu-list">
-                    <li>
-                        <a href="/Categories/List/clothes" class="menu-item">
-                            <span class="link-text">Одежда</span>
-                            <img src="/img/svg/Shape.svg" alt="" class="link-img">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/Categories/List/furniture" class="menu-item">
-                            <span class="link-text">Мебель</span>
-                            <img src="/img/svg/Shape.svg" alt="" class="link-img">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/Categories/List/appliances" class="menu-item">
-                            <span class="link-text">Бытовая техника</span>
-                            <img src="/img/svg/Shape.svg" alt="" class="link-img">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/Categories/List/sport" class="menu-item">
-                            <span class="link-text">Спортивные товары</span>
-                            <img src="/img/svg/Shape.svg" alt="" class="link-img">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/Categories/List/cosmetics" class="menu-item">
-                            <span class="link-text">Косметика</span>
-                            <img src="/img/svg/Shape.svg" alt="" class="link-img">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/Categories/List/garden-tech" class="menu-item">
-                            <span class="link-text">Садовая техника</span>
-                            <img src="/img/svg/Shape.svg" alt="" class="link-img">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/Categories/List/plumbing" class="menu-item">
-                            <span class="link-text">Сантехника</span>
-                            <img src="/img/svg/Shape.svg" alt="" class="link-img">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/Categories/List/constracting" class="menu-item">
-                            <span class="link-text">Строительные материалы</span>
-                            <img src="/img/svg/Shape.svg" alt="" class="link-img">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/Categories/List/auto" class="menu-item">
-                            <span class="link-text">Автотехника</span>
-                            <img src="/img/svg/Shape.svg" alt="" class="link-img">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/Categories/List/food" class="menu-item">
-                            <span class="link-text">Еда</span>
-                            <img src="/img/svg/Shape.svg" alt="" class="link-img">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/Categories/List/sites" class="last-menu-item">
-                            <span class="link-text">Разработка сайтов</span>
-                            <img src="/img/svg/Shape.svg" alt="" class="link-img">
-                        </a>
-                    </li>
+                    @RenderSection("menulist")
                 </ul>
             </nav>
             <div class="g33-articles">
@@ -247,59 +183,7 @@
             </nav>
            
             @RenderBody()
-            <div class="big-text">
-                <div class="big-text-header">
-                    INTEC:Universe LITE - интернет-магазин с конструктором дизайна на редакции
-                    1C-Битрикс «СТАРТ»
-                </div>
-                <div class="big-text-main">
-                    <div class="big-text-content">
-                        INTEC.UniverseLite - первый конструктор интернет-магазинов на редакции «СТАРТ» 1C-Битрикс. Решение
-                        идеально подойдет для быстрого запуска современного и многофункционального интернет-магазина на
-                        редакции «СТАРТ», без лишних расходов и привлечения сторонних специалистов. INTEC.UniverseLite может
-                        легко трансформироваться в отраслевое решение любой сферы бизнеса
-                    </div>
-                    <a href="" class="more-details">Подробнее</a>
-                </div>
-                <img src="/img/svg/tablet.svg" alt="" class="big-text-img">
-            </div>
-            <div class="articles">
-                <span class="articles-header">Статьи</span>
-                <img src="/img/svg/minecraft.svg" alt="" class="articles-left-img">
-                <img src="/img/svg/terminal.svg" alt="" class="articles-center-img">
-                <img src="/img/svg/article-phones.svg" alt="" class="articles-right-img">
-                <div class="articles-left-header">Оставьте отзыв, чтобы помочь другим</div>
-                <div class="articles-left-content">
-                    Стильная и независимая. Легко управляйте средствами на вашем счёте.
-                    Получайте информацию о ваших финансах, платежах и переводах при помощи сообщений.
-                </div>
-                <div class="articles-center-header">Где купить терминал для эквайринга</div>
-                <div class="articles-center-content">
-                    Стильная и независимая. Легко управляйте средствами на вашем счёте.
-                    Получайте информацию о ваших финансах, платежах и переводах при помощи сообщений.
-                </div>
-                <div class="articles-right-header">Как выбрать свой идеальный телефон</div>
-                <div class="articles-right-content">
-                    Подключите автоплатёж и будьте уверены, что налог оплачен в срок. Вам не
-                    придётся тратить время на поиск суммы к уплате в личном кабинете налогоплательщика.
-                </div>
-            </div>
-            <div class="last-content">
-                <span class="last-content-header">Широкий ассортимент и высокое качество</span>
-                <div class="last-content-main">
-                    <div class="last-content-main-text">
-                        Каждый из нас понимает очевидную вещь: постоянное
-                        информационно-пропагандистское обеспечение нашей деятельности требует определения и уточнения
-                        дальнейших направлений развития. Как уже неоднократно упомянуто, базовые сценарии поведения
-                        пользователей, которые представляют собой яркий пример континентально-европейского типа политической
-                        культуры, будут рассмотрены исключительно в разрезе маркетинговых и финансовых предпосылок. Являясь
-                        всего лишь частью общей картины, непосредственные участники технического прогресса рассмотрены
-                        исключительно в разрезе маркетинговых и финансовых предпосылок.
-                    </div>
-                    <div class="magic-rect"></div>
-                    <a href="" class="last-content-main-next">Читать далее</a>
-                </div>
-            </div>
+            
         </div>
     </div>
     <div class="footer">

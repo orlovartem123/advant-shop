@@ -33,6 +33,7 @@ namespace AdvantShop.Data.Models
         public DateTime? StartDate { get; set; }
         public bool ForFirstOrder { get; set; }
         public int? EntityId { get; set; }
+        public bool? IsMinimalOrderPriceFromAllCart { get; set; }
 
         public ICollection<CouponCategories> CouponCategories { get; set; }
         public ICollection<CouponCustomers> CouponCustomers { get; set; }

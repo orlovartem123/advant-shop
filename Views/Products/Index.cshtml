@@ -1,9 +1,47 @@
 ﻿@using AdvantShop.ViewModels
-@model ProductsListViewModel
+@model CategoriesAndProductsViewModel
 
 @{
     Layout = "_Layout";
 }
+
+
+@section menulist {
+    @{
+        int count = 2;
+        string menuClass = "menu-item";
+        int categoriesCount = Model.categoriesListView.Categories.Count();
+        bool hasChild = false;
+        foreach (var category in Model.categoriesListView.Categories)
+        {
+            hasChild = (Model.categoriesListView.AllCategories.Where(c => c.ParentCategory == category.CategoryId).Count() != 0) ? true : false;
+            if (count++ == categoriesCount) { menuClass = "last-menu-item"; }
+            <li>
+                <div class="menu-item-wrapper">
+                    <a href="/Categories/List/@category.UrlPath " class="@menuClass ">
+                        <span class="link-text">@category.Name</span>
+                        @{ if (hasChild)
+                            { <img src="/img/svg/Shape.svg" alt="" class="link-img">}
+                        }
+                    </a>
+                    @{if (hasChild)
+                        {
+                            <div class="menu-sidebar-dop">
+                                @{
+                                    foreach (var child in Model.categoriesListView.AllCategories.Where(c => c.ParentCategory == category.CategoryId))
+                                    {
+                                        <div class="dop-sidebar-ref-block"><a class="dop-sidebar-ref" href="/Categories/List/@child.UrlPath ">@child.Name</a></div>
+                                    }
+                                }
+                            </div>
+                        }
+                    }
+                </div>
+            </li>
+        }
+    }
+}
+
 <div class="slider">
     <div class="slider-buttons">
         <label class="label">
@@ -145,15 +183,16 @@
     <div class="g40-product-info">
         @{
             string firstProductClass = "first-product";
-            foreach (var product in Model.noveltyProducts)
+            foreach (var product in Model.productsListView.noveltyProducts)
             {
                 string availiable = "В наличии";
                 string availiableClass = "";
-                if (!product.OnSale==true) { availiable = "Нет в наличии"; availiableClass = "not-availiable"; }
+                if (!product.OnSale == true) { availiable = "Нет в наличии"; availiableClass = "not-availiable"; }
                 <div class="g40-product @firstProductClass ">
+                    <a href="" class="g41-product-ref"></a>
                     @{firstProductClass = "";}
                     <div class="g41-img-block">
-                        <img src=@product.Name class="g41-img">
+                        <img src="@Model.categoriesListView.getProductImg(product.ProductId) " class="g41-img">
                         <div class="img-buttons">
                             <a href="" class="img-button img-first"></a>
                             <a href="" class="img-button"></a>
@@ -174,7 +213,7 @@
                         }
                     </div>
                     <span class="g40-info-tight-text-availability @availiableClass ">@availiable</span>
-                    <span class="g40-price">@String.Format("{0:0,0}", product.Fee) руб.</span>
+                    <span class="g40-price">@String.Format("{0:0,0}", Model.categoriesListView.getProductPrice(product.ProductId)) @Model.categoriesListView.getProductCurrency(product.CurrencyId)</span>
                     <div class="g40-basket">
                         <img src="/img/svg/g40-basket.svg">
                         <a href="" class="g40-basket-text">В корзину</a>
@@ -200,15 +239,16 @@
     <div class="g41-product-info">
         @{
             firstProductClass = "first-product";
-            foreach (var product in Model.hitProducts)
+            foreach (var product in Model.productsListView.hitProducts)
             {
                 string availiable = "В наличии";
                 string availiableClass = "";
-                if (!product.OnSale==true) { availiable = "Нет в наличии"; availiableClass = "not-availiable"; }
+                if (!product.OnSale == true) { availiable = "Нет в наличии"; availiableClass = "not-availiable"; }
                 <div class="g41-product @firstProductClass ">
+                    <a href="" class="g41-product-ref"></a>
                     @{firstProductClass = "";}
                     <div class="g41-img-block">
-                        <img src=@product.UrlPath class="g41-img">
+                        <img src="@Model.categoriesListView.getProductImg(product.ProductId) " class="g41-img">
                         <div class="img-buttons">
                             <a href="" class="img-button img-first"></a>
                             <a href="" class="img-button"></a>
@@ -217,7 +257,7 @@
                             <a href="" class="img-button"></a>
                         </div>
                     </div>
-                    <a href="" class="g40-right-text">@product.Name</a>
+                    <span class="g40-right-text">@product.Name</span>
                     <div class="stars">
                         @{ for (int i = 1; i < 6; i++)
                             {
@@ -229,7 +269,7 @@
                         }
                     </div>
                     <span class="g40-info-tight-text-availability @availiableClass ">@availiable</span>
-                    <span class="g40-price">@String.Format("{0:0,0}", product.Fee) руб.</span>
+                    <span class="g40-price">@String.Format("{0:0,0}", Model.categoriesListView.getProductPrice(product.ProductId)) @Model.categoriesListView.getProductCurrency(product.CurrencyId)</span>
                     <div class="g40-basket">
                         <img src="/img/svg/g40-basket.svg">
                         <a href="" class="g40-basket-text">В корзину</a>
@@ -276,6 +316,59 @@
                 <div class="show-more-text">Показать еще</div>
             </button>
         </div>
+    </div>
+</div>
+<div class="big-text">
+    <div class="big-text-header">
+        INTEC:Universe LITE - интернет-магазин с конструктором дизайна на редакции
+        1C-Битрикс «СТАРТ»
+    </div>
+    <div class="big-text-main">
+        <div class="big-text-content">
+            INTEC.UniverseLite - первый конструктор интернет-магазинов на редакции «СТАРТ» 1C-Битрикс. Решение
+            идеально подойдет для быстрого запуска современного и многофункционального интернет-магазина на
+            редакции «СТАРТ», без лишних расходов и привлечения сторонних специалистов. INTEC.UniverseLite может
+            легко трансформироваться в отраслевое решение любой сферы бизнеса
+        </div>
+        <a href="" class="more-details">Подробнее</a>
+    </div>
+    <img src="/img/svg/tablet.svg" alt="" class="big-text-img">
+</div>
+<div class="articles">
+    <span class="articles-header">Статьи</span>
+    <img src="/img/svg/minecraft.svg" alt="" class="articles-left-img">
+    <img src="/img/svg/terminal.svg" alt="" class="articles-center-img">
+    <img src="/img/svg/article-phones.svg" alt="" class="articles-right-img">
+    <div class="articles-left-header">Оставьте отзыв, чтобы помочь другим</div>
+    <div class="articles-left-content">
+        Стильная и независимая. Легко управляйте средствами на вашем счёте.
+        Получайте информацию о ваших финансах, платежах и переводах при помощи сообщений.
+    </div>
+    <div class="articles-center-header">Где купить терминал для эквайринга</div>
+    <div class="articles-center-content">
+        Стильная и независимая. Легко управляйте средствами на вашем счёте.
+        Получайте информацию о ваших финансах, платежах и переводах при помощи сообщений.
+    </div>
+    <div class="articles-right-header">Как выбрать свой идеальный телефон</div>
+    <div class="articles-right-content">
+        Подключите автоплатёж и будьте уверены, что налог оплачен в срок. Вам не
+        придётся тратить время на поиск суммы к уплате в личном кабинете налогоплательщика.
+    </div>
+</div>
+<div class="last-content">
+    <span class="last-content-header">Широкий ассортимент и высокое качество</span>
+    <div class="last-content-main">
+        <div class="last-content-main-text">
+            Каждый из нас понимает очевидную вещь: постоянное
+            информационно-пропагандистское обеспечение нашей деятельности требует определения и уточнения
+            дальнейших направлений развития. Как уже неоднократно упомянуто, базовые сценарии поведения
+            пользователей, которые представляют собой яркий пример континентально-европейского типа политической
+            культуры, будут рассмотрены исключительно в разрезе маркетинговых и финансовых предпосылок. Являясь
+            всего лишь частью общей картины, непосредственные участники технического прогресса рассмотрены
+            исключительно в разрезе маркетинговых и финансовых предпосылок.
+        </div>
+        <div class="magic-rect"></div>
+        <a href="" class="last-content-main-next">Читать далее</a>
     </div>
 </div>
 

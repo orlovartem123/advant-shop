@@ -1,0 +1,70 @@
+﻿@using AdvantShop.ViewModels
+@model CatalogViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = "_Layout";
+}
+
+@section menulist {
+    @{
+        int count = 2;
+        string menuClass = "menu-item";
+        int categoriesCount = Model.Categories.Count(c => c.ParentCategory == 0);
+        bool hasChild = false;
+        foreach (var category in Model.Categories)
+        {
+            if (category.ParentCategory != 0 || category.CategoryId == 0)
+            {
+                continue;
+            }
+            hasChild = (Model.Categories.Where(c => c.ParentCategory == category.CategoryId).Count() != 0) ? true : false;
+            if (count++ == categoriesCount) { menuClass = "last-menu-item"; }
+            <li>
+                <div class="menu-item-wrapper">
+                    <a href="/Categories/List/@category.UrlPath " class="@menuClass ">
+                        <span class="link-text">@category.Name</span>
+                        @{ if (hasChild)
+                            { <img src="/img/svg/Shape.svg" alt="" class="link-img">}
+                        }
+                    </a>
+                    @{if (hasChild)
+                        {
+                            <div class="menu-sidebar-dop">
+                                @{
+                                    foreach (var child in Model.Categories.Where(c => c.ParentCategory == category.CategoryId))
+                                    {
+                                        <div class="dop-sidebar-ref-block"><a class="dop-sidebar-ref" href="@child.UrlPath ">@child.Name</a></div>
+                                    }
+                                }
+                            </div>
+                        }
+                    }
+                </div>
+            </li>
+        }
+    }
+}
+
+<div class="current-route">
+    <a href="/" class="route-item">Главная</a>
+    <img src="/img/svg/Shape.svg" alt="" class="route-item">
+    <a href="" class="route-item">Каталог</a>
+</div>
+<div class="categories-block">
+    @{
+        int num = 0;
+        string categoryClass = "";
+        foreach (var category in Model.Categories)
+        {
+            if (category.CategoryId == 0) { continue; }
+            categoryClass = (num++ % 4 == 0) ? "first-category" : "";         
+            <div class="category-item @categoryClass ">
+                <a asp-controller="Categories" asp-action="List"
+                   asp-route-category="@category.UrlPath" class="category-ref">@category.Name</a>
+            </div>
+        }
+    }
+
+
+</div>
