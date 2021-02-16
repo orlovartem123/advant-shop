@@ -48,19 +48,8 @@ namespace AdvantShop.ViewModels
             return Currencies.FirstOrDefault(cur => cur.CurrencyId == currencyID).Code;
         }
 
-        //private IEnumerable<Product> getProductsByCategory(List<Product> list, Category1 category)
-        //{
-        //    List<Product> result = list;
-        //    result.AddRange(ProductsCategories.Where(cat => cat.CategoryId == category.CategoryId).Select(p => p.Product));
-        //    foreach (var cat in AllCategories.Where(c => c.ParentCategory == category.CategoryId))
-        //    {
-        //        getProductsByCategory(result, cat);
-        //    }
-        //    return result;
-        //}
-
         public CategoriesListViewModel(string urlPath, IAllProducts allProducts,
-    IAllCategories allCategories, Stack<Category1> categoriesPath, int Page)
+            IAllCategories allCategories, Stack<Category1> categoriesPath, int Page)
         {
             this.Page = Page;
             ProductsOnPage = 18;
@@ -70,11 +59,14 @@ namespace AdvantShop.ViewModels
             Photos = allProducts.Photos;
             ProductExts = allProducts.ProductExts;
             Currencies = allProducts.Currencies;
-            Categories = allCategories.AllCategories.Where(cat => cat.ParentCategory == CurrentCategory.CategoryId && cat.CategoryId != 0);
+            Categories = allCategories.AllCategories.Where(cat =>
+                cat.ParentCategory == CurrentCategory.CategoryId && cat.CategoryId != 0);
             this.categoriesPath = categoriesPath;
             ProductsCategories = allProducts.ProductsCategories;
+            int skiped = 0;
             if (!urlPath.Equals("catalog"))
-                ProductsByCategory = allProducts.ProductsByCategoryOnPage(urlPath, Page, ProductsOnPage);
+                ProductsByCategory = allProducts.getProductsByCategory(new List<Product>(),
+                    CurrentCategory, Page, ProductsOnPage, ref skiped);
         }
     }
 }

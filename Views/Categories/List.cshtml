@@ -60,7 +60,7 @@
     @{
         int count = 0;
         string positionClass = "first-product";
-        foreach (var product in Model.ProductsByCategory.Skip((Model.Page - 1) * Model.ProductsOnPage).Take(Model.ProductsOnPage))
+        foreach (var product in Model.ProductsByCategory)
         {
             string availiable = "В наличии";
             string availiableClass = "";
@@ -70,7 +70,7 @@
                     count++;
                     positionClass = (count % 3 == 0) ? "first-product" : "";
                 }
-                <a href="" class="g41-product-ref"></a>
+                <a href="/Product/ProductCart/@product.UrlPath " class="g41-product-ref"></a>
                 <div class="g41-img-block">
                     <img src="@Model.getProductImg(product.ProductId) " class="g41-img">
                     <div class="img-buttons">
@@ -82,7 +82,7 @@
                     </div>
                 </div>
                 <div class="stars"></div>
-                <a href="" class="g40-center-text">@product.Name</a>
+                <a href="/Product/ProductCart/@product.UrlPath " class="g40-center-text">@product.Name</a>
                 <div class="stars">
                     @{ for (int i = 1; i < 6; i++)
                         {
@@ -106,14 +106,13 @@
 <div class="pages">
     @{
         string url = Model.CurrentCategory.UrlPath;
-        //int nextPageCount=
         if (Model.Page > 1 && Model.ProductsByCategory.Count() > 0)
         {
             int pageNum = Model.Page - 1;
             string page = pageNum.ToString();
             <a asp-controller="Categories" asp-action="List" asp-all-route-data='new Dictionary<string,string> { { "category", url }, {"page", page } }' class="load-more">Предыдущая</a>
         }
-        if ((Model.ProductsOnPage * Model.Page) < (Model.ProductsByCategory.Count()))
+        if (Model.CurrentCategory.TotalProductsCount > (Model.Page - 1) * Model.ProductsOnPage + Model.ProductsByCategory.Count())
         {
             int pageNum = Model.Page + 1;
             string page = pageNum.ToString();

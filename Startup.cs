@@ -32,6 +32,8 @@ namespace AdvantShop
             services.AddDbContext<Lic855Context>(options => options.UseSqlServer(_configString.GetConnectionString("DefaultConnection")));
             services.AddTransient<IAllCategories, CategoryRepository>();
             services.AddTransient<IAllProducts, ProductRepository>();
+            services.AddDistributedMemoryCache();
+            services.AddSession();
             services.AddMvc();
         }
 
@@ -42,12 +44,14 @@ namespace AdvantShop
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseSession();
             app.UseStaticFiles();
             //app.UseMvcWithDefaultRoute();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(name: "default", template: "{controller=Products}/{action=Index}/{id?}");
                 routes.MapRoute(name: "categories", template: "Categories/{action}/{category?}/{page?}", defaults: new { Controller = "Categories", action = "List", page = "1" });
+                routes.MapRoute(name: "product", template: "Product/{action}/{product?}", defaults: new { Controller = "Product", action = "ProductCart" });
             });
 
         }

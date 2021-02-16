@@ -29,7 +29,7 @@ namespace AdvantShop.Data.Repository
 
         public IEnumerable<Currency> Currencies => lic855Context.Currency;
 
-        public IEnumerable<ProductCategories> ProductsCategories => lic855Context.ProductCategories.Include(cat => cat.Product);
+        public IEnumerable<ProductCategories> ProductsCategories => lic855Context.ProductCategories.Include(cat => cat.Product).Include(cat => cat.Category);
 
         public Product GetProduct(int productId) => lic855Context.Product.FirstOrDefault(p => p.ProductId == productId);
 
@@ -40,32 +40,33 @@ namespace AdvantShop.Data.Repository
             return lic855Context.Category1.FirstOrDefault(c => c.UrlPath.Equals(categoryUrlName))?.CategoryId;
         }
 
-        //last
-        //private IEnumerable<Product> getProductsByCategory(List<Product> list, Category1 category)
-        //{
-        //    List<Product> result = list;
-        //    result.AddRange(ProductsCategories.Where(cat => cat.CategoryId == category.CategoryId).Select(p => p.Product));
-        //    foreach (var cat in lic855Context.Category1.Where(c => c.ParentCategory == category.CategoryId))
-        //    {
-        //        getProductsByCategory(result, cat);
-        //    }
-        //    return result;
-        //}
-
-        private IEnumerable<Product> getProductsByCategory(List<Product> list, Category1 category, int page, int productsOnPage)
+        public IEnumerable<Product> getProductsByCategory(List<Product> list, Category1 category,
+            int page, int productsOnPage, ref int skiped)
         {
-            List<Product> result = list;
-            result.AddRange(ProductsCategories.Where(cat =>
-            cat.CategoryId == category.CategoryId).Skip(page * productsOnPage).Select(p => p.Product).Take(productsOnPage));
-            return result;
-        }
-
-        public IEnumerable<Product> ProductsByCategoryOnPage(string categoryUrlName, int page, int productsOnPage)
-        {
-            var category = lic855Context.Category1.FirstOrDefault(cat => cat.UrlPath.Equals(categoryUrlName));
-            List<Product> result = new List<Product>();
-            result.AddRange(ProductsCategories.Where(cat =>
-            cat.CategoryId == category.CategoryId).Skip(page * productsOnPage).Select(p => p.Product).Take(productsOnPage));
+            if (list.Count() >= productsOnPage) return list.Take(productsOnPage); 
+            var result = list;
+            int productsByCategoryCount = ProductsCategories.Where(cat => cat.CategoryId == category.CategoryId).Count();
+            int needSkip = (page - 1) * productsOnPage;
+            if (skiped == needSkip)
+            {
+                result.AddRange(ProductsCategories.Where(cat =>
+                cat.CategoryId == category.CategoryId).Select(p => p.Product).Take(productsOnPage - result.Count()));
+            }
+            else
+            {
+                skiped += productsByCategoryCount;
+                if (skiped > needSkip)
+                {
+                    result.AddRange(ProductsCategories.Where(cat =>
+                    cat.CategoryId == category.CategoryId).Skip(needSkip - (skiped - productsByCategoryCount)).Select(p =>
+                        p.Product).Take(productsOnPage - result.Count()));
+                    skiped = needSkip;
+                }
+            }
+            foreach (var cat in lic855Context.Category1.Where(c => c.ParentCategory == category.CategoryId))
+            {
+                getProductsByCategory(result, cat, page, productsOnPage, ref skiped);
+            }
             return result;
         }
     }

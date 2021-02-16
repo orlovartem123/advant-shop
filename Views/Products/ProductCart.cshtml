@@ -1,0 +1,76 @@
+﻿@using AdvantShop.ViewModels
+@model ProductCartViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = "_Layout";
+}
+
+@section menulist {
+    @{
+        int k = 2;
+        string menuClass = "menu-item";
+        int categoriesCount = Model.Categories.Count();
+        bool hasChild = false;
+        foreach (var category in Model.Categories)
+        {
+            hasChild = (Model.allCategories.AllCategories.Where(c => c.ParentCategory == category.CategoryId).Count() != 0) ? true : false;
+            if (k++ == categoriesCount) { menuClass = "last-menu-item"; }
+            <li>
+                <div class="menu-item-wrapper">
+                    <a href="/Categories/List/@category.UrlPath " class="@menuClass ">
+                        <span class="link-text">@category.Name</span>
+                        @{ if (hasChild)
+                            { <img src="/img/svg/Shape.svg" alt="" class="link-img">}
+                        }
+                    </a>
+                    @{if (hasChild)
+                        {
+                            <div class="menu-sidebar-dop">
+                                @{
+                                    foreach (var child in Model.allCategories.AllCategories.Where(c => c.ParentCategory == category.CategoryId))
+                                    {
+                                        <div class="dop-sidebar-ref-block"><a class="dop-sidebar-ref" href="/Categories/List/@child.UrlPath ">@child.Name</a></div>
+                                    }
+                                }
+                            </div>
+                        }
+                    }
+                </div>
+            </li>
+        }
+    }
+}
+
+
+<div class="cart-container">
+    <div class="img-container">
+        <img src="@Model.ProductImg " alt="" class="img-product">
+    </div>
+    <div class="full-description">
+        <div class="product-desk">@Model.Product.Name</div>
+        <div class="stars-block">
+            @{ for (int i = 1; i < 6; i++)
+                {
+                    if (i > 4)
+                    { <img src="/img/svg/empty-star.svg" class="product-star"> }
+                    else
+                    { <img src="/img/svg/gold-star.svg" class="product-star"> }
+                }
+            }
+        </div>
+        @{ 
+            string availiable = "В наличии";
+            string availiableClass = "";
+            if (!Model.Product.OnSale ==true) { availiable = "Нет в наличии"; availiableClass = "not-availiable"; }
+        }
+        <div class="product-cart-availiable @availiableClass ">@availiable</div>
+    </div>
+    <div class="buy-block">
+        <div class="product-price">
+            <span class="price-text">Цена</span>
+            <span class="price-value">@String.Format("{0:0,0}", Model.ProductPrice) @Model.ProductCurrency</span>
+        </div>
+        <button class="button-check at-cart">Купить</button>
+    </div>
+</div>

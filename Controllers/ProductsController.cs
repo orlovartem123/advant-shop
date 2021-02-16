@@ -1,4 +1,5 @@
 ﻿using AdvantShop.Data.Interfaces;
+using AdvantShop.Data.Models;
 using AdvantShop.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,7 +15,7 @@ namespace AdvantShop.Controllers
 
         private readonly IAllCategories allCategories;
 
-        public ProductsController(IAllProducts allProducts,IAllCategories allCategories)
+        public ProductsController(IAllProducts allProducts, IAllCategories allCategories)
         {
             this.allProducts = allProducts;
             this.allCategories = allCategories;
@@ -22,10 +23,18 @@ namespace AdvantShop.Controllers
 
         public ViewResult Index()
         {
-            var categoriesView = new CategoriesListViewModel("catalog",allProducts,allCategories,null,0);
+            var categoriesView = new CategoriesListViewModel("catalog", allProducts, allCategories, null, 0);
             var productsView = new ProductsListViewModel(allProducts);
             CategoriesAndProductsViewModel obj = new CategoriesAndProductsViewModel(categoriesView, productsView);
             return View(obj);
+        }
+
+        [Route("Product/ProductCart/{product}")]
+        public ViewResult ProductCart(string product)
+        {
+            ProductCartViewModel viewModel = new ProductCartViewModel(allProducts.AllProducts.FirstOrDefault(p =>
+            p.UrlPath.Equals(product)), allCategories, allProducts);
+            return View(viewModel);
         }
     }
 }

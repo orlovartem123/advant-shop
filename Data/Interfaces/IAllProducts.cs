@@ -22,7 +22,7 @@ namespace AdvantShop.Data.Interfaces
 
         IEnumerable<Product> NoveltyProducts { get; }
 
-        IEnumerable<Product> ProductsByCategoryOnPage(string categoryUrlName, int page, int productsOnPage);
+        IEnumerable<Product> getProductsByCategory(List<Product> list, Category1 category, int page, int productsOnPage, ref int skiped);
 
         Category1 GetCategory(int productId);
 
